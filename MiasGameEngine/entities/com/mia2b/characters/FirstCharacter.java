@@ -11,12 +11,13 @@ public class FirstCharacter extends ParentCharacter{
 	private double x;
 	private double y;
 	private int speed = 64;
+	private int rotateSpeed = 64;
 	private double currentDirection = 45;
 	private boolean isRealPlayer = false;
 	
 	public FirstCharacter (){
-		speed = (int) (1024 + Math.random()*2048);
-
+		speed = (int) (64 + Math.random()*1000);
+		rotateSpeed=(int) (64 + Math.random()*2560);
 	}
 	public FirstCharacter (boolean isReal){
 		this();
@@ -90,6 +91,9 @@ public class FirstCharacter extends ParentCharacter{
 			}
 			Camera.setCameraX(x);
 			Camera.setCameraY(y);
+		}else{
+			currentDirection = currentDirection + (rotateSpeed * lastActionDelta);
+			move(lastActionDelta,speed,currentDirection);
 		}
 	}
 	private void move(double lastActionDelta , int speed, double direction ){
