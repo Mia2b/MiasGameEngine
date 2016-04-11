@@ -20,6 +20,7 @@ public class FirstCharacter extends ParentCharacter{
 	}
 	public FirstCharacter (boolean isReal){
 		this();
+		isRealPlayer = isReal;
 		
 
 	}
@@ -54,40 +55,42 @@ public class FirstCharacter extends ParentCharacter{
 
 
 	private void moveWithInput(double lastActionDelta, boolean isMainPlayer) {
-		if(KeysPressed.contains('W') && KeysPressed.contains('A')){
-			currentDirection=225;
-			move(lastActionDelta,speed,currentDirection);
-		}else
-		if(KeysPressed.contains('A') && KeysPressed.contains('S')){
-			currentDirection=135;
-			move(lastActionDelta,speed,currentDirection);
-		}else
-		if(KeysPressed.contains('S') && KeysPressed.contains('D')){
-			currentDirection=45;
-			move(lastActionDelta,speed,currentDirection);
-		}else
-		if(KeysPressed.contains('D') && KeysPressed.contains('W')){
-			currentDirection=315;
-			move(lastActionDelta,speed,currentDirection);
-		}else
-		if(KeysPressed.contains('W')){
-			currentDirection=270;
-			move(lastActionDelta,speed,currentDirection);
-		}else
-		if(KeysPressed.contains('A')){
-			currentDirection=180;
-			move(lastActionDelta,speed,currentDirection);
-		}else
-		if(KeysPressed.contains('S')){
-			currentDirection=90;
-			move(lastActionDelta,speed,currentDirection);
-		}else
-		if(KeysPressed.contains('D')){
-			currentDirection=0;
-			move(lastActionDelta,speed,currentDirection);
+		if(isMainPlayer){
+			if(KeysPressed.contains('W') && KeysPressed.contains('A')){
+				currentDirection=225;
+				move(lastActionDelta,speed,currentDirection);
+			}else
+			if(KeysPressed.contains('A') && KeysPressed.contains('S')){
+				currentDirection=135;
+				move(lastActionDelta,speed,currentDirection);
+			}else
+			if(KeysPressed.contains('S') && KeysPressed.contains('D')){
+				currentDirection=45;
+				move(lastActionDelta,speed,currentDirection);
+			}else
+			if(KeysPressed.contains('D') && KeysPressed.contains('W')){
+				currentDirection=315;
+				move(lastActionDelta,speed,currentDirection);
+			}else
+			if(KeysPressed.contains('W')){
+				currentDirection=270;
+				move(lastActionDelta,speed,currentDirection);
+			}else
+			if(KeysPressed.contains('A')){
+				currentDirection=180;
+				move(lastActionDelta,speed,currentDirection);
+			}else
+			if(KeysPressed.contains('S')){
+				currentDirection=90;
+				move(lastActionDelta,speed,currentDirection);
+			}else
+			if(KeysPressed.contains('D')){
+				currentDirection=0;
+				move(lastActionDelta,speed,currentDirection);
+			}
+			Camera.setCameraX(x);
+			Camera.setCameraY(y);
 		}
-		Camera.setCameraX(x);
-		Camera.setCameraY(y);
 	}
 	private void move(double lastActionDelta , int speed, double direction ){
 		this.x += Math.cos(Math.toRadians(direction)) * speed * lastActionDelta;
