@@ -15,7 +15,7 @@ public class Camera {
 	private static int bufferWidth = DisplayWindow.getFrame().getWidth()/2;
 	private static int bufferHeight = DisplayWindow.getFrame().getHeight()/2;
 	
-	private static int renderBuffer = 0;
+	private static int renderBuffer = -300;
 	
 	private static volatile ArrayList<ParentCharacter> visibleCharacters = new ArrayList<ParentCharacter>();
 	private static volatile ArrayList<ParentEnemy> visibleEnemies = new ArrayList<ParentEnemy>();
