@@ -11,11 +11,17 @@ public class FirstCharacter extends ParentCharacter{
 	private double x;
 	private double y;
 	private int speed = 64;
-	private int rotateSpeed = 45;
-	private double direction = 45;
+	private double currentDirection = 45;
+	private boolean isRealPlayer = false;
+	
 	public FirstCharacter (){
-		speed = (int) (Math.random()*256);
-		rotateSpeed = (int) (Math.random()*256);;
+		speed = (int) (1024 + Math.random()*2048);
+
+	}
+	public FirstCharacter (boolean isReal){
+		this();
+		
+
 	}
 	
 	
@@ -41,34 +47,47 @@ public class FirstCharacter extends ParentCharacter{
 	}
 	@Override
 	public void action(double lastActionDelta){
+		
+		moveWithInput(lastActionDelta, isRealPlayer);
+		
+	}
+
+
+	private void moveWithInput(double lastActionDelta, boolean isMainPlayer) {
 		if(KeysPressed.contains('W') && KeysPressed.contains('A')){
-			move(lastActionDelta,speed,225);
+			currentDirection=225;
+			move(lastActionDelta,speed,currentDirection);
 		}else
 		if(KeysPressed.contains('A') && KeysPressed.contains('S')){
-			move(lastActionDelta,speed,135);
+			currentDirection=135;
+			move(lastActionDelta,speed,currentDirection);
 		}else
 		if(KeysPressed.contains('S') && KeysPressed.contains('D')){
-			move(lastActionDelta,speed,45);
+			currentDirection=45;
+			move(lastActionDelta,speed,currentDirection);
 		}else
 		if(KeysPressed.contains('D') && KeysPressed.contains('W')){
-			move(lastActionDelta,speed,315);
+			currentDirection=315;
+			move(lastActionDelta,speed,currentDirection);
 		}else
 		if(KeysPressed.contains('W')){
-			move(lastActionDelta,speed,270);
+			currentDirection=270;
+			move(lastActionDelta,speed,currentDirection);
 		}else
 		if(KeysPressed.contains('A')){
-			move(lastActionDelta,speed,180);
+			currentDirection=180;
+			move(lastActionDelta,speed,currentDirection);
 		}else
 		if(KeysPressed.contains('S')){
-			move(lastActionDelta,speed,90);
+			currentDirection=90;
+			move(lastActionDelta,speed,currentDirection);
 		}else
 		if(KeysPressed.contains('D')){
-			move(lastActionDelta,speed,0);
+			currentDirection=0;
+			move(lastActionDelta,speed,currentDirection);
 		}
 		Camera.setCameraX(x);
 		Camera.setCameraY(y);
-		direction += rotateSpeed * lastActionDelta;
-		//split();
 	}
 	private void move(double lastActionDelta , int speed, double direction ){
 		this.x += Math.cos(Math.toRadians(direction)) * speed * lastActionDelta;
