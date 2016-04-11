@@ -8,7 +8,6 @@ public class SpriteSheet {
 	public SpriteSheet(BufferedImage sheet) {
 		this.sheet = sheet;
 		removePinkAndBlue();
-		System.out.println("called");
 	}
 
 	public BufferedImage crop(int y, int x, int width, int height) {

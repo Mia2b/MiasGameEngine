@@ -1,14 +1,17 @@
 package com.mia2b.controlLoops;
 
 import com.mia2b.gameControl.GameState;
+import com.mia2b.world.WorldRender;
 import com.mia2b.world.WorldUpdate;
 
-public class tickThread implements Runnable {
+public class CombineThread implements Runnable {
 	Thread t;
 	String tName;
+	double ticks;
 
-	public tickThread(String threadName) {
+	public CombineThread(String threadName, double maxTPS) {
 		tName = threadName;
+		ticks = maxTPS;
 		t = new Thread(this, tName);
 		System.out.println("Starting " + t);
 		t.start();
@@ -21,8 +24,9 @@ public class tickThread implements Runnable {
 	private void loopTick() {
 		try {
 			WorldUpdate update = new WorldUpdate(); // Construct update
+			WorldRender world = new WorldRender();
 
-			final double ticks = 1000D; // Initialize and set tick rate
+			 // Initialize and set tick rate
 			double lastTime = System.nanoTime(); // Get the current time to
 			double lastUpdate = System.nanoTime();
 			double deltaTime = 0; // Initialize the delta
@@ -40,6 +44,7 @@ public class tickThread implements Runnable {
 
 				if (deltaTime >= 1) { // if the delta is greater than 1
 					update.tick((currentTime-lastUpdate)/1000000000); // then call tick
+					world.render();
 					deltaTime--; // subtract from delta to set it back below 1
 					lastUpdate = currentTime;
 				}

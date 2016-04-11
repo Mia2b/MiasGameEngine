@@ -3,11 +3,11 @@ package com.mia2b.controlLoops;
 import com.mia2b.gameControl.GameState;
 import com.mia2b.world.WorldRender;
 
-public class renderThread implements Runnable {
+public class RenderThread implements Runnable {
 	Thread t;
 	String tName;
 
-	public renderThread(String threadName) {
+	public RenderThread(String threadName) {
 		tName = threadName;
 		t = new Thread(this, tName);
 		System.out.println("Starting " + t);
@@ -21,7 +21,6 @@ public class renderThread implements Runnable {
 	private void loopRender() {
 		try {
 			WorldRender world = new WorldRender();
-			world.preRender();
 			while (GameState.isRunning()) {
 				world.render();
 				while (GameState.isSleeping()) {

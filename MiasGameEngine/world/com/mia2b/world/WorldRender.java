@@ -15,10 +15,10 @@ public class WorldRender {
 	private BufferStrategy bs;
 	private Graphics g;
 
-	public void preRender() {
+	public WorldRender() {
 		
 		if (bs == null) {
-			DisplayWindow.getCanvas().createBufferStrategy(4);
+			DisplayWindow.getCanvas().createBufferStrategy(2);
 			return;
 		}
 		

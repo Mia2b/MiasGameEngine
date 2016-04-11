@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import com.mia2b.beta.Camera;
 import com.mia2b.display.SpriteAssets;
+import com.mia2b.world.KeysPressed;
 
 public class FirstCharacter extends ParentCharacter{
 	private BufferedImage image = SpriteAssets.getCharacter().get(0);
@@ -40,7 +41,30 @@ public class FirstCharacter extends ParentCharacter{
 	}
 	@Override
 	public void action(double lastActionDelta){
-		move(lastActionDelta,speed,direction);
+		if(KeysPressed.contains('W') && KeysPressed.contains('A')){
+			move(lastActionDelta,speed,225);
+		}else
+		if(KeysPressed.contains('A') && KeysPressed.contains('S')){
+			move(lastActionDelta,speed,135);
+		}else
+		if(KeysPressed.contains('S') && KeysPressed.contains('D')){
+			move(lastActionDelta,speed,45);
+		}else
+		if(KeysPressed.contains('D') && KeysPressed.contains('W')){
+			move(lastActionDelta,speed,315);
+		}else
+		if(KeysPressed.contains('W')){
+			move(lastActionDelta,speed,270);
+		}else
+		if(KeysPressed.contains('A')){
+			move(lastActionDelta,speed,180);
+		}else
+		if(KeysPressed.contains('S')){
+			move(lastActionDelta,speed,90);
+		}else
+		if(KeysPressed.contains('D')){
+			move(lastActionDelta,speed,0);
+		}
 		Camera.setCameraX(x);
 		Camera.setCameraY(y);
 		direction += rotateSpeed * lastActionDelta;

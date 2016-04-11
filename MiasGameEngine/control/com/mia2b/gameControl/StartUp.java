@@ -1,13 +1,12 @@
 package com.mia2b.gameControl;
 
-import com.mia2b.controlLoops.renderThread;
-import com.mia2b.controlLoops.tickThread;
+import com.mia2b.characters.FirstCharacter;
+import com.mia2b.controlLoops.CombineThread;
 import com.mia2b.display.DisplayWindow;
 import com.mia2b.display.DisplayWindowAction;
 import com.mia2b.display.SpriteAssets;
-import com.mia2b.characters.*;
-import com.mia2b.enemies.*;
-import com.mia2b.tiles.*;
+import com.mia2b.enemies.BlueMonster;
+import com.mia2b.tiles.RedTile;
 import com.mia2b.world.WorldObjects;
 
 public class StartUp {
@@ -19,7 +18,6 @@ public class StartUp {
 		
 		new DisplayWindowAction(DisplayWindow.getFrame());
 		SpriteAssets.loadAssets();
-		System.out.println("here");
 		//Testing.makeMap();
 		
 		//WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
@@ -37,9 +35,9 @@ public class StartUp {
 			WorldObjects.addTile(new RedTile(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
 		}
 		
-		System.out.println("here");
-		new tickThread("Tick-Loop");													
-		new renderThread("Render-Loop");
+		
+		DisplayWindow.getCanvas().addKeyListener(new KeyInput()) ;
+		new CombineThread("Combine Thread", 120);
 		
 
 		GetAndSetFpsTps();
