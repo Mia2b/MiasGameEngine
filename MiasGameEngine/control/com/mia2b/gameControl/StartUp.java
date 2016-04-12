@@ -6,7 +6,7 @@ import com.mia2b.display.DisplayWindow;
 import com.mia2b.display.DisplayWindowAction;
 import com.mia2b.display.SpriteAssets;
 import com.mia2b.enemies.BlueMonster;
-import com.mia2b.tiles.RedTile;
+import com.mia2b.tiles.YellowTile;
 import com.mia2b.world.WorldObjects;
 
 public class StartUp {
@@ -21,9 +21,9 @@ public class StartUp {
 		//Testing.makeMap();
 		
 		//WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
-		WorldObjects.addCharacter(new FirstCharacter(true),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
-		WorldObjects.addEnemy(new BlueMonster(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
-		WorldObjects.addTile(new RedTile(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
+		WorldObjects.addCharacter(new FirstCharacter(true),0,0);
+		//WorldObjects.addEnemy(new BlueMonster(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
+		WorldObjects.addTile(new YellowTile(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
 		
 		for (int i = 0;i < 1000; i++){
 			
@@ -32,7 +32,7 @@ public class StartUp {
 		
 		
 		DisplayWindow.getCanvas().addKeyListener(new KeyInput()) ;
-		new CombineThread("Combine Thread", 120);
+		new CombineThread("Combine Thread", 99999);
 		
 
 		GetAndSetFpsTps();

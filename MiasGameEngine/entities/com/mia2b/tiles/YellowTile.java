@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import com.mia2b.display.SpriteAssets;
 
-public class RedTile extends ParentTile{
+public class YellowTile extends ParentTile{
 	private BufferedImage image = SpriteAssets.getTile().get(0);
 	private int x;
 	private int y;
