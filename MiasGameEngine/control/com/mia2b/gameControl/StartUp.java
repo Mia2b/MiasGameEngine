@@ -32,7 +32,7 @@ public class StartUp {
 		
 		
 		DisplayWindow.getCanvas().addKeyListener(new KeyInput()) ;
-		new CombineThread("Combine Thread", 24);
+		new CombineThread("Combine Thread", 9999);
 		
 
 		GetAndSetFpsTps();

@@ -1,5 +1,6 @@
 package com.mia2b.characters;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import com.mia2b.beta.Camera;
@@ -9,6 +10,8 @@ import com.mia2b.world.KeysPressed;
 
 public class FirstCharacter extends ParentCharacter{
 	private BufferedImage image = SpriteAssets.getCharacter().get(0);
+	private final int WIDTH = 32;
+	private final int HEIGHT = 32;
 	private double x;
 	private double y;
 	private int speed = 64;
@@ -17,7 +20,7 @@ public class FirstCharacter extends ParentCharacter{
 	private boolean isRealPlayer = false;
 	
 	public FirstCharacter (){
-		speed = (int) (64 + Math.random()*1000);
+		speed = 64*5;
 		rotateSpeed=(int) (64 + Math.random()*2560);
 	}
 	public FirstCharacter (boolean isReal){
@@ -100,15 +103,14 @@ public class FirstCharacter extends ParentCharacter{
 	private void move(double lastActionDelta , int speed, double direction ){
 		int xSpeed = speed;
 		int ySpeed = speed;
+		
 		for(ParentTile i: Camera.getVisibleTiles()){
-			if (isInX(i,nextXPosition(lastActionDelta ,xSpeed,direction ),32)){
-				while(isInY(i,nextYPosition(lastActionDelta ,ySpeed,direction ),32)){
+			while (isTouching(i,nextYPosition(lastActionDelta ,ySpeed,direction ),nextXPosition(lastActionDelta ,xSpeed,direction ))){
+				if(isInY(i,nextYPosition(lastActionDelta ,ySpeed,direction ))){
 					ySpeed--;
 				}
-			}
-				
-			if(isInY(i,nextYPosition(lastActionDelta ,ySpeed,direction ),32)){
-				while(isInX(i,nextXPosition(lastActionDelta ,xSpeed,direction ),32)){
+				if(isInX(i,nextXPosition(lastActionDelta ,xSpeed,direction ))){
+					System.out.println(isInX(i,nextXPosition(lastActionDelta ,xSpeed,direction )));
 					xSpeed--;
 				}
 			}
@@ -116,15 +118,21 @@ public class FirstCharacter extends ParentCharacter{
 		this.x = nextXPosition(lastActionDelta ,xSpeed,direction );
 		this.y = nextYPosition(lastActionDelta ,ySpeed,direction );
 	}
-	
-	private boolean isInY(ParentTile i,double y, int offset){
-		if(i.getY() < y && (i.getY()+offset) > y || i.getY() < y+offset && (i.getY()+offset) > y+offset){
+	private boolean isInY(ParentTile tile,double y){
+		if((tile.getY() < y && (tile.getY()+HEIGHT) > y) ||( tile.getY() < (y+HEIGHT) && (tile.getY()+HEIGHT) > (y+HEIGHT))){
 			return true;
 		}
 		return false;
 	}
-	private boolean isInX(ParentTile i,double x, int offset){
-		if(i.getX() < x && (i.getX()+offset) > x || i.getX() < x+offset && (i.getX()+offset) > x+offset){
+	private boolean isInX(ParentTile tile,double x){
+		if((tile.getX() < x && (tile.getX()+WIDTH) > x) ||( tile.getX() < (x+WIDTH) && (tile.getX()+WIDTH) > (x+WIDTH))){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isTouching(ParentTile tile,double x, double y){
+		if (isInY(tile, y) && isInX(tile, x)){
 			return true;
 		}
 		return false;
@@ -136,5 +144,6 @@ public class FirstCharacter extends ParentCharacter{
 	private double nextYPosition(double lastActionDelta , int ySpeed, double direction ){
 		return this.y + (Math.sin(Math.toRadians(direction)) * ySpeed * lastActionDelta);
 	}
+	
 	
 }
