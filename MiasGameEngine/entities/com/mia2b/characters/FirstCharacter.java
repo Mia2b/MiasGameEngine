@@ -2,6 +2,7 @@ package com.mia2b.characters;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import com.mia2b.beta.Camera;
 import com.mia2b.display.SpriteAssets;
@@ -101,48 +102,63 @@ public class FirstCharacter extends ParentCharacter{
 		}
 	}
 	private void move(double lastActionDelta , int speed, double direction ){
+		ArrayList<ParentTile> tiles = Camera.getVisibleTiles();
 		int xSpeed = speed;
 		int ySpeed = speed;
 		
-		for(ParentTile i: Camera.getVisibleTiles()){
-			while (isTouching(i,nextYPosition(lastActionDelta ,ySpeed,direction ),nextXPosition(lastActionDelta ,xSpeed,direction ))){
-				if(isInY(i,nextYPosition(lastActionDelta ,ySpeed,direction ))){
-					ySpeed--;
-				}
-				if(isInX(i,nextXPosition(lastActionDelta ,xSpeed,direction ))){
-					System.out.println(isInX(i,nextXPosition(lastActionDelta ,xSpeed,direction )));
+		for(ParentTile i: tiles){
+			while(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT)){
+				if(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),y,WIDTH,HEIGHT))
 					xSpeed--;
-				}
+				if(collisionBox(i).intersects(x,nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT))
+					ySpeed--;
 			}
 		}
 		this.x = nextXPosition(lastActionDelta ,xSpeed,direction );
 		this.y = nextYPosition(lastActionDelta ,ySpeed,direction );
 	}
-	private boolean isInY(ParentTile tile,double y){
-		if((tile.getY() < y && (tile.getY()+HEIGHT) > y) ||( tile.getY() < (y+HEIGHT) && (tile.getY()+HEIGHT) > (y+HEIGHT))){
-			return true;
-		}
-		return false;
-	}
-	private boolean isInX(ParentTile tile,double x){
-		if((tile.getX() < x && (tile.getX()+WIDTH) > x) ||( tile.getX() < (x+WIDTH) && (tile.getX()+WIDTH) > (x+WIDTH))){
-			return true;
-		}
-		return false;
-	}
 	
-	private boolean isTouching(ParentTile tile,double x, double y){
-		if (isInY(tile, y) && isInX(tile, x)){
-			return true;
-		}
-		return false;
+	private Rectangle collisionBox(ParentTile i){
+		return new Rectangle(i.getX(),i.getY(),WIDTH+1,HEIGHT+1);
+		
 	}
-	
 	private double nextXPosition(double lastActionDelta , int xSpeed, double direction ){
 		return this.x + (Math.cos(Math.toRadians(direction)) * xSpeed * lastActionDelta);
 	}
 	private double nextYPosition(double lastActionDelta , int ySpeed, double direction ){
 		return this.y + (Math.sin(Math.toRadians(direction)) * ySpeed * lastActionDelta);
+	}
+	
+	void quickSort(ArrayList<ParentTile> out) {
+		mainQuickSort(out, 0, out.size() - 1);
+	}
+
+	void mainQuickSort(ArrayList<ParentTile> out, int left, int right) {
+		int index = quickSortPartition(out, left, right);
+		if (left < (index - 1))
+			mainQuickSort(out, left, index - 1);
+		if (right > index)
+			mainQuickSort(out, index, right);
+	}
+
+	int quickSortPartition(ArrayList<ParentTile> out, int left, int right) {
+		int center = out.get((left + right) / 2).getDistanceFromPlayer(this);
+		while (left <= right) {
+			while (out.get(left).getDistanceFromPlayer(this) < center) {
+				left++;
+			}
+			while (out.get(right).getDistanceFromPlayer(this) > center) {
+				right--;
+			}
+			if (left <= right) {
+				ParentTile temp = out.get(left); 
+				out.set(left,out.get(right));
+				out.set(right,temp);
+				left++;
+				right--;
+			}
+		}
+		return left;
 	}
 	
 	

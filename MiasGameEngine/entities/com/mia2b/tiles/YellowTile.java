@@ -34,4 +34,5 @@ public class YellowTile extends ParentTile{
 	public void action(){
 		
 	}
+	
 }
