@@ -120,17 +120,20 @@ public class FirstCharacter extends ParentCharacter{
 		ArrayList<ParentTile> tiles = Camera.getVisibleTiles();
 		int xSpeed = speed;
 		int ySpeed = speed;
+		if (!tiles.isEmpty()){
 		quickSort(tiles);
-		for(ParentTile i: tiles){
-			while(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT)){
-				if(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),y,WIDTH,HEIGHT))
-					xSpeed--;
-				if(collisionBox(i).intersects(x,nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT))
-					ySpeed--;
+			for(ParentTile i: tiles){
+				while(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT)){
+					if(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),y,WIDTH,HEIGHT))
+						xSpeed--;
+					if(collisionBox(i).intersects(x,nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT))
+						ySpeed--;
+				}
 			}
 		}
 		this.x = nextXPosition(lastActionDelta ,xSpeed,direction );
 		this.y = nextYPosition(lastActionDelta ,ySpeed,direction );
+		
 	}
 	
 /*<<<<<<< HEAD
