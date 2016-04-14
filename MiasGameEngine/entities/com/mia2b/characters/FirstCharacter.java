@@ -102,7 +102,7 @@ public class FirstCharacter extends ParentCharacter{
 		}
 	}
 	private void move(double lastActionDelta , int speed, double direction ){
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 		int xSpeed = speed;
 		int ySpeed = speed;
 		for(ParentTile i: Camera.getVisibleTiles()){
@@ -116,7 +116,7 @@ public class FirstCharacter extends ParentCharacter{
 				while(isInX(i,nextXPosition(lastActionDelta ,xSpeed,direction ),32)){
 					xSpeed--;
 				}
-=======
+=======*/
 		ArrayList<ParentTile> tiles = Camera.getVisibleTiles();
 		int xSpeed = speed;
 		int ySpeed = speed;
@@ -127,14 +127,14 @@ public class FirstCharacter extends ParentCharacter{
 					xSpeed--;
 				if(collisionBox(i).intersects(x,nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT))
 					ySpeed--;
->>>>>>> branch 'master' of https://github.com/Mia2b/MiasGameEngine.git
+//>>>>>>> branch 'master' of https://github.com/Mia2b/MiasGameEngine.git
 			}
 		}
 		this.x = nextXPosition(lastActionDelta ,xSpeed,direction );
 		this.y = nextYPosition(lastActionDelta ,ySpeed,direction );
 	}
 	
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 	private boolean isInY(ParentTile i,double y, int offset){
 		if(i.getY() < y && (i.getY()+offset) > y || i.getY() < y+offset && (i.getY()+offset) > y+offset){
 			return true;
@@ -154,7 +154,7 @@ public class FirstCharacter extends ParentCharacter{
 	private double nextYPosition(double lastActionDelta , int ySpeed, double direction ){
 		return this.y + (Math.sin(Math.toRadians(direction)) * ySpeed * lastActionDelta);
 	}
-=======
+=======*/
 	private Rectangle collisionBox(ParentTile i){
 		return new Rectangle(i.getX(),i.getY(),WIDTH+1,HEIGHT+1);
 		
@@ -165,7 +165,7 @@ public class FirstCharacter extends ParentCharacter{
 	private double nextYPosition(double lastActionDelta , int ySpeed, double direction ){
 		return this.y + (Math.sin(Math.toRadians(direction)) * ySpeed * lastActionDelta);
 	}
-	
+	/*
 	void quickSort(ArrayList<ParentTile> out) {
 		mainQuickSort(out, 0, out.size() - 1);
 	}
@@ -196,8 +196,8 @@ public class FirstCharacter extends ParentCharacter{
 			}
 		}
 		return left;
-	}
+	}*/
 	
->>>>>>> branch 'master' of https://github.com/Mia2b/MiasGameEngine.git
+//>>>>>>> branch 'master' of https://github.com/Mia2b/MiasGameEngine.git
 	
 }
