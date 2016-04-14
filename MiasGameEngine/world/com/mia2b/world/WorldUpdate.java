@@ -2,6 +2,7 @@ package com.mia2b.world;
 
 import java.util.ArrayList;
 
+import com.mia2b.beta.Camera;
 import com.mia2b.characters.ParentCharacter;
 import com.mia2b.enemies.ParentEnemy;
 import com.mia2b.gameControl.GameVariables;
@@ -13,6 +14,7 @@ public class WorldUpdate {
 		GameVariables.addTps(1);
 	}
 	private void entitiesActions(double timeSinceLastTick) {
+		Camera.setVisibleEntities();
 		for (ParentCharacter i : new ArrayList<ParentCharacter>(WorldObjects.getCharacters())) {
 			i.action(timeSinceLastTick);
 		}

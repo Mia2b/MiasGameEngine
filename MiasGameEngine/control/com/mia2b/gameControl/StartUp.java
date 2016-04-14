@@ -2,6 +2,8 @@ package com.mia2b.gameControl;
 
 import com.mia2b.characters.FirstCharacter;
 import com.mia2b.controlLoops.CombineThread;
+import com.mia2b.controlLoops.RenderThread;
+import com.mia2b.controlLoops.TickThread;
 import com.mia2b.display.DisplayWindow;
 import com.mia2b.display.DisplayWindowAction;
 import com.mia2b.display.SpriteAssets;
@@ -23,18 +25,20 @@ public class StartUp {
 		//WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
 		WorldObjects.addCharacter(new FirstCharacter(true),0,0);
 		//WorldObjects.addEnemy(new BlueMonster(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
-		WorldObjects.addTile(new YellowTile(),128, 128);
-		WorldObjects.addTile(new YellowTile(),128-128, 128+128);
-		WorldObjects.addTile(new YellowTile(),128+64, 128+64);
+		WorldObjects.addTile(new YellowTile(),0, 0);
+		WorldObjects.addTile(new YellowTile(),-63, 128);
+		WorldObjects.addTile(new YellowTile(),65, 65);
 		
-		for (int i = 0;i < 1000; i++){
+		//for (int i = 0;i < 1000; i++){
 			
 		//	WorldObjects.addCharacter(new FirstCharacter(),0,0);
-		}
+		//}
 		
 		
 		DisplayWindow.getCanvas().addKeyListener(new KeyInput()) ;
-		new CombineThread("Combine Thread", 9999);
+		//new CombineThread("Combine Thread", 60);
+		new TickThread("tick");
+		new RenderThread("pretty");
 		
 
 		GetAndSetFpsTps();

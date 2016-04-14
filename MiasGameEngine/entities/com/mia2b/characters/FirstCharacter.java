@@ -21,7 +21,7 @@ public class FirstCharacter extends ParentCharacter{
 	private boolean isRealPlayer = false;
 	
 	public FirstCharacter (){
-		speed = 64*5;
+		speed = (int) (64 + Math.random()*1024);
 		rotateSpeed=(int) (64 + Math.random()*2560);
 	}
 	public FirstCharacter (boolean isReal){
@@ -117,22 +117,27 @@ public class FirstCharacter extends ParentCharacter{
 					xSpeed--;
 				}
 =======*/
+		
 		ArrayList<ParentTile> tiles = Camera.getVisibleTiles();
-		int xSpeed = speed;
-		int ySpeed = speed;
+		double nextX = nextXPosition(lastActionDelta ,speed,direction );
+		double nextY = nextYPosition(lastActionDelta ,speed,direction );
 		if (!tiles.isEmpty()){
 		quickSort(tiles);
 			for(ParentTile i: tiles){
-				while(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT)){
-					if(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),y,WIDTH,HEIGHT))
-						xSpeed--;
-					if(collisionBox(i).intersects(x,nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT))
-						ySpeed--;
+					
+				Rectangle hitBox = collisionBox(i);
+				while(hitBox.intersects(nextX,nextY,WIDTH,HEIGHT)){
+					if(hitBox.intersects(nextX,y,WIDTH,HEIGHT))
+						nextX -= (Math.cos(Math.toRadians(direction)));
+					
+					if(hitBox.intersects(x,nextY,WIDTH,HEIGHT))
+						nextY -= (Math.sin(Math.toRadians(direction)));
 				}
+				
 			}
 		}
-		this.x = nextXPosition(lastActionDelta ,xSpeed,direction );
-		this.y = nextYPosition(lastActionDelta ,ySpeed,direction );
+		this.x = nextX;
+		this.y = nextY;
 		
 	}
 	
