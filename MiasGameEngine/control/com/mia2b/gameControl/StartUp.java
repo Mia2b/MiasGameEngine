@@ -24,6 +24,8 @@ public class StartUp {
 		WorldObjects.addCharacter(new FirstCharacter(true),0,0);
 		//WorldObjects.addEnemy(new BlueMonster(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
 		WorldObjects.addTile(new YellowTile(),128, 128);
+		WorldObjects.addTile(new YellowTile(),128, 128+30);
+		WorldObjects.addTile(new YellowTile(),128+30, 128+30);
 		
 		for (int i = 0;i < 1000; i++){
 			
@@ -32,7 +34,7 @@ public class StartUp {
 		
 		
 		DisplayWindow.getCanvas().addKeyListener(new KeyInput()) ;
-		new CombineThread("Combine Thread", 24);
+		new CombineThread("Combine Thread", 100);
 		
 
 		GetAndSetFpsTps();

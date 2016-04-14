@@ -2,6 +2,7 @@ package com.mia2b.tiles;
 
 import java.awt.image.BufferedImage;
 
+import com.mia2b.characters.ParentCharacter;
 import com.mia2b.display.SpriteAssets;
 
 public class YellowTile extends ParentTile{
@@ -34,5 +35,10 @@ public class YellowTile extends ParentTile{
 	public void action(){
 		
 	}
-	
+	@Override
+	public int getDistanceFromPlayer(ParentCharacter character){
+		int deltaX = (int) (this.x - character.getX());
+		int deltaY = (int) (this.y - character.getY());
+		return (int)(Math.sqrt(deltaX * deltaX) + (deltaY * deltaY));
+	}
 }

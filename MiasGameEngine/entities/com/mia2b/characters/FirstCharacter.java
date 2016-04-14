@@ -120,14 +120,13 @@ public class FirstCharacter extends ParentCharacter{
 		ArrayList<ParentTile> tiles = Camera.getVisibleTiles();
 		int xSpeed = speed;
 		int ySpeed = speed;
-		
+		quickSort(tiles);
 		for(ParentTile i: tiles){
 			while(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT)){
 				if(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),y,WIDTH,HEIGHT))
 					xSpeed--;
 				if(collisionBox(i).intersects(x,nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT))
 					ySpeed--;
-//>>>>>>> branch 'master' of https://github.com/Mia2b/MiasGameEngine.git
 			}
 		}
 		this.x = nextXPosition(lastActionDelta ,xSpeed,direction );
@@ -165,7 +164,7 @@ public class FirstCharacter extends ParentCharacter{
 	private double nextYPosition(double lastActionDelta , int ySpeed, double direction ){
 		return this.y + (Math.sin(Math.toRadians(direction)) * ySpeed * lastActionDelta);
 	}
-	/*
+	
 	void quickSort(ArrayList<ParentTile> out) {
 		mainQuickSort(out, 0, out.size() - 1);
 	}
@@ -196,7 +195,7 @@ public class FirstCharacter extends ParentCharacter{
 			}
 		}
 		return left;
-	}*/
+	}
 	
 //>>>>>>> branch 'master' of https://github.com/Mia2b/MiasGameEngine.git
 	
