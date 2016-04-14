@@ -102,6 +102,7 @@ public class FirstCharacter extends ParentCharacter{
 		}
 	}
 	private void move(double lastActionDelta , int speed, double direction ){
+<<<<<<< HEAD
 		int xSpeed = speed;
 		int ySpeed = speed;
 		for(ParentTile i: Camera.getVisibleTiles()){
@@ -115,12 +116,25 @@ public class FirstCharacter extends ParentCharacter{
 				while(isInX(i,nextXPosition(lastActionDelta ,xSpeed,direction ),32)){
 					xSpeed--;
 				}
+=======
+		ArrayList<ParentTile> tiles = Camera.getVisibleTiles();
+		int xSpeed = speed;
+		int ySpeed = speed;
+		
+		for(ParentTile i: tiles){
+			while(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT)){
+				if(collisionBox(i).intersects(nextXPosition(lastActionDelta ,xSpeed,direction ),y,WIDTH,HEIGHT))
+					xSpeed--;
+				if(collisionBox(i).intersects(x,nextYPosition(lastActionDelta ,ySpeed,direction ),WIDTH,HEIGHT))
+					ySpeed--;
+>>>>>>> branch 'master' of https://github.com/Mia2b/MiasGameEngine.git
 			}
 		}
 		this.x = nextXPosition(lastActionDelta ,xSpeed,direction );
 		this.y = nextYPosition(lastActionDelta ,ySpeed,direction );
 	}
 	
+<<<<<<< HEAD
 	private boolean isInY(ParentTile i,double y, int offset){
 		if(i.getY() < y && (i.getY()+offset) > y || i.getY() < y+offset && (i.getY()+offset) > y+offset){
 			return true;
@@ -140,5 +154,50 @@ public class FirstCharacter extends ParentCharacter{
 	private double nextYPosition(double lastActionDelta , int ySpeed, double direction ){
 		return this.y + (Math.sin(Math.toRadians(direction)) * ySpeed * lastActionDelta);
 	}
+=======
+	private Rectangle collisionBox(ParentTile i){
+		return new Rectangle(i.getX(),i.getY(),WIDTH+1,HEIGHT+1);
+		
+	}
+	private double nextXPosition(double lastActionDelta , int xSpeed, double direction ){
+		return this.x + (Math.cos(Math.toRadians(direction)) * xSpeed * lastActionDelta);
+	}
+	private double nextYPosition(double lastActionDelta , int ySpeed, double direction ){
+		return this.y + (Math.sin(Math.toRadians(direction)) * ySpeed * lastActionDelta);
+	}
+	
+	void quickSort(ArrayList<ParentTile> out) {
+		mainQuickSort(out, 0, out.size() - 1);
+	}
+
+	void mainQuickSort(ArrayList<ParentTile> out, int left, int right) {
+		int index = quickSortPartition(out, left, right);
+		if (left < (index - 1))
+			mainQuickSort(out, left, index - 1);
+		if (right > index)
+			mainQuickSort(out, index, right);
+	}
+
+	int quickSortPartition(ArrayList<ParentTile> out, int left, int right) {
+		int center = out.get((left + right) / 2).getDistanceFromPlayer(this);
+		while (left <= right) {
+			while (out.get(left).getDistanceFromPlayer(this) < center) {
+				left++;
+			}
+			while (out.get(right).getDistanceFromPlayer(this) > center) {
+				right--;
+			}
+			if (left <= right) {
+				ParentTile temp = out.get(left); 
+				out.set(left,out.get(right));
+				out.set(right,temp);
+				left++;
+				right--;
+			}
+		}
+		return left;
+	}
+	
+>>>>>>> branch 'master' of https://github.com/Mia2b/MiasGameEngine.git
 	
 }
