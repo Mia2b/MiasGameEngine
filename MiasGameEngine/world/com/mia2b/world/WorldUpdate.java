@@ -16,9 +16,7 @@ public class WorldUpdate {
 		
 	}
 	private void entitiesActions(double timeSinceLastTick) {
-		System.out.println("befor");
 		Camera.setVisibleEntities();
-		System.out.println("After");
 		for (ParentCharacter i : new ArrayList<ParentCharacter>(WorldObjects.getCharacters())) {
 			i.action(timeSinceLastTick);
 		}

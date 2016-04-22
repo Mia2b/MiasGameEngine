@@ -21,9 +21,9 @@ public class FirstCharacter extends ParentCharacter{
 	private boolean isRealPlayer = false;
 	
 	public FirstCharacter (){
-		//speed = (int) (64 + Math.random()*1024);
-		//rotateSpeed=(int) (64 + Math.random()*2560);
-		speed = 256;
+		speed = (int) (64 + Math.random()*1024);
+		rotateSpeed=(int) (64 + Math.random()*2560);
+		//speed = 256;
 	}
 	public FirstCharacter (boolean isReal){
 		this();
@@ -134,13 +134,10 @@ public class FirstCharacter extends ParentCharacter{
 					none = true;
 					if(hitBox.intersects(nextX,y,WIDTH,HEIGHT)){
 						nextX -= (Math.cos(Math.toRadians(direction)));
-						System.out.println(nextX);
 						none=false;
 					}
 					if(hitBox.intersects(x,nextY,WIDTH,HEIGHT)){
-						System.out.println(nextY);
 						nextY = nextY-(Math.sin(Math.toRadians(direction)));
-						System.out.println(nextY);
 						none=false;
 					}
 					if(none){
@@ -150,7 +147,6 @@ public class FirstCharacter extends ParentCharacter{
 				}
 				
 			}
-			System.out.println("out");
 		}
 		this.x = nextX;
 		this.y = nextY;

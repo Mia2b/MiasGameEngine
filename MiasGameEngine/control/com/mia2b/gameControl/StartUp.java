@@ -32,17 +32,29 @@ public class StartUp {
 		WorldObjects.addTile(new YellowTile(),90, 0);
 		WorldObjects.addTile(new YellowTile(),120, 0);
 		WorldObjects.addTile(new YellowTile(),150, 0);
-		WorldObjects.addTile(new YellowTile(),190, 0);
-		//for (int i = 0;i < 1000; i++){
+		WorldObjects.addTile(new YellowTile(),220, 0);
+		
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		
+		for (int i = 0;i < 7000; i++){
 			
-		//	WorldObjects.addCharacter(new FirstCharacter(),0,0);
-		//}
+			
+			WorldObjects.addTile(new YellowTile(),220+(i)/100, i/100);
+		}
 		
 		
 		DisplayWindow.getCanvas().addKeyListener(new KeyInput()) ;
-		//new CombineThread("Combine Thread", 60);
-		new TickThread("tick");
-		new RenderThread("pretty");
+		new CombineThread("Combine Thread", 60);
+		//new TickThread("tick");
+		//new RenderThread("pretty");
 		
 
 		GetAndSetFpsTps();
