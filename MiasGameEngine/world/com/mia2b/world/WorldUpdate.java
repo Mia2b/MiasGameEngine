@@ -10,11 +10,15 @@ import com.mia2b.tiles.ParentTile;
 
 public class WorldUpdate {
 	public void tick(double timeSinceLastTick){
+		
 		entitiesActions(timeSinceLastTick);
 		GameVariables.addTps(1);
+		
 	}
 	private void entitiesActions(double timeSinceLastTick) {
+		System.out.println("befor");
 		Camera.setVisibleEntities();
+		System.out.println("After");
 		for (ParentCharacter i : new ArrayList<ParentCharacter>(WorldObjects.getCharacters())) {
 			i.action(timeSinceLastTick);
 		}
@@ -24,5 +28,6 @@ public class WorldUpdate {
 		for (ParentTile i :  new ArrayList<ParentTile>(WorldObjects.getTiles())) {
 			i.action();
 		}
+		
 	}
 }

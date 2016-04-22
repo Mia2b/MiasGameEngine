@@ -21,8 +21,9 @@ public class FirstCharacter extends ParentCharacter{
 	private boolean isRealPlayer = false;
 	
 	public FirstCharacter (){
-		speed = (int) (64 + Math.random()*1024);
-		rotateSpeed=(int) (64 + Math.random()*2560);
+		//speed = (int) (64 + Math.random()*1024);
+		//rotateSpeed=(int) (64 + Math.random()*2560);
+		speed = 256;
 	}
 	public FirstCharacter (boolean isReal){
 		this();
@@ -113,12 +114,13 @@ public class FirstCharacter extends ParentCharacter{
 			}
 				
 			if(isInY(i,nextYPosition(lastActionDelta ,ySpeed,direction ),32)){
+			
 				while(isInX(i,nextXPosition(lastActionDelta ,xSpeed,direction ),32)){
 					xSpeed--;
 				}
 =======*/
 		
-		ArrayList<ParentTile> tiles = Camera.getVisibleTiles();
+		ArrayList<ParentTile> tiles = new ArrayList<ParentTile>(Camera.getVisibleTiles());
 		double nextX = nextXPosition(lastActionDelta ,speed,direction );
 		double nextY = nextYPosition(lastActionDelta ,speed,direction );
 		if (!tiles.isEmpty()){
@@ -126,15 +128,29 @@ public class FirstCharacter extends ParentCharacter{
 			for(ParentTile i: tiles){
 					
 				Rectangle hitBox = collisionBox(i);
+				boolean none = true;
 				while(hitBox.intersects(nextX,nextY,WIDTH,HEIGHT)){
-					if(hitBox.intersects(nextX,y,WIDTH,HEIGHT))
+
+					none = true;
+					if(hitBox.intersects(nextX,y,WIDTH,HEIGHT)){
 						nextX -= (Math.cos(Math.toRadians(direction)));
-					
-					if(hitBox.intersects(x,nextY,WIDTH,HEIGHT))
-						nextY -= (Math.sin(Math.toRadians(direction)));
+						System.out.println(nextX);
+						none=false;
+					}
+					if(hitBox.intersects(x,nextY,WIDTH,HEIGHT)){
+						System.out.println(nextY);
+						nextY = nextY-(Math.sin(Math.toRadians(direction)));
+						System.out.println(nextY);
+						none=false;
+					}
+					if(none){
+						nextY = y;
+						nextX = x;
+					}
 				}
 				
 			}
+			System.out.println("out");
 		}
 		this.x = nextX;
 		this.y = nextY;
