@@ -33,26 +33,45 @@ public class StartUp {
 		WorldObjects.addTile(new YellowTile(),120, 0);
 		WorldObjects.addTile(new YellowTile(),150, 0);
 		WorldObjects.addTile(new YellowTile(),220, 0);
+		/*
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		*/
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),0,0);
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+		WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
 		
-		WorldObjects.addCharacter(new FirstCharacter(),0,0);
-		WorldObjects.addCharacter(new FirstCharacter(),0,0);
-		WorldObjects.addCharacter(new FirstCharacter(),0,0);
-		WorldObjects.addCharacter(new FirstCharacter(),0,0);
-		WorldObjects.addCharacter(new FirstCharacter(),0,0);
-		WorldObjects.addCharacter(new FirstCharacter(),0,0);
-		WorldObjects.addCharacter(new FirstCharacter(),0,0);
-		WorldObjects.addCharacter(new FirstCharacter(),0,0);
-		WorldObjects.addCharacter(new FirstCharacter(),0,0);
 		
-		for (int i = 0;i < 7000; i++){
+		for (int i = 0;i < 9000; i++){
+			
+			//WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+			//WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
+			//WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *2), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*2));
 			
 			
-			WorldObjects.addTile(new YellowTile(),220+(i)/100, i/100);
+			WorldObjects.addTile(new YellowTile(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *3), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*3));
 		}
 		
 		
 		DisplayWindow.getCanvas().addKeyListener(new KeyInput()) ;
-		new CombineThread("Combine Thread", 60);
+		new CombineThread("Combine Thread", 1000);
 		//new TickThread("tick");
 		//new RenderThread("pretty");
 		
