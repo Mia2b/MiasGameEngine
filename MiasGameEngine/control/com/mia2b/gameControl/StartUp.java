@@ -1,5 +1,6 @@
 package com.mia2b.gameControl;
 
+import com.mia2b.beta.Testing;
 import com.mia2b.characters.FirstCharacter;
 import com.mia2b.controlLoops.CombineThread;
 import com.mia2b.controlLoops.RenderThread;
@@ -21,14 +22,16 @@ public class StartUp {
 		new DisplayWindowAction(DisplayWindow.getFrame());
 		SpriteAssets.loadAssets();
 		//Testing.makeMap();
+		Testing.addMap();
 		
 		//WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
 		WorldObjects.addCharacter(new FirstCharacter(true),0,0);
+		
 		//WorldObjects.addEnemy(new BlueMonster(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
 		
-		for (int i = 0;i < 9000; i++){
+		//for (int i = 0;i < 9000; i++){
 			WorldObjects.addTile(new YellowTile(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *3), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*3));
-		}
+		//}
 		
 		
 		DisplayWindow.getCanvas().addKeyListener(new KeyInput()) ;

@@ -5,6 +5,7 @@ import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
 import com.mia2b.beta.Camera;
+import com.mia2b.beta.Testing;
 import com.mia2b.characters.ParentCharacter;
 import com.mia2b.display.DisplayWindow;
 import com.mia2b.enemies.ParentEnemy;

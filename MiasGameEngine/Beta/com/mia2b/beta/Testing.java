@@ -3,10 +3,24 @@ package com.mia2b.beta;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.mia2b.display.DisplayWindow;
 import com.mia2b.display.SpriteAssets;
+import com.mia2b.tiles.YellowTile;
+import com.mia2b.world.WorldObjects;
 
 public class Testing {
-	static int [][] mapArray = new int [200][200];
+	static int [][] mapArray = { {1,1,1,1,1,1,1,1,1,1,1,1,1},
+			  {1,0,1,0,1,0,1,0,0,0,0,0,1},
+			  {1,0,1,0,0,0,1,0,1,1,1,0,1},
+			  {1,0,0,0,1,1,1,0,0,0,0,0,1},
+			  {1,0,1,0,0,0,0,0,1,1,1,0,1},
+			  {1,0,1,0,1,1,1,0,1,0,0,0,1},
+			  {1,0,1,0,1,0,0,0,1,1,1,0,1},
+			  {1,0,1,0,1,1,1,0,1,0,1,0,1},
+			  {1,0,0,0,0,0,0,0,0,0,1,0,1},
+			  {1,1,1,1,1,1,1,1,1,1,1,1,1}
+
+			};//new int [200][200];
 //											{	{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3,  1, 0, 2, 1, 1, -1,  0, 0},
 //			  					 				{ 0, 1, 0, 0,0,0, 0, 0, 1, 0, 3, 1, 0, 2, 1, -1, -1, 0,  0 },
 //			  					 				{ 0, 1, 0, 0, 0, 0, 0, 0, 1, 0 , 3, 1, 0, 2, 1, -1, -1, 0,0},
@@ -39,21 +53,14 @@ public class Testing {
 				mapArray[i][j] = (int) ((Math.random()*6)-2);
 			}
 		}
-
-		Graphics g = im.getGraphics();
-
+	}
+	public static void addMap(){
 		for (int i = 0; i < mapArray.length; i++) {
 			for (int j = 0; j < mapArray[1].length; j++) {
-				// if statement for if its on the screen
-				if(mapArray[i][j] != -1){
-					g.drawImage(SpriteAssets.getTile().get(mapArray[i][j]), j * 32, i * 32, null);
+				if(mapArray[i][j] == 1){
+					WorldObjects.addTile(new YellowTile(),i*32, j*32);
 				}
 			}
 		}
-		
-	}
-
-	public static void paintCompoent(Graphics g) {
-		g.drawImage(im, 0, 0, null);
 	}
 }

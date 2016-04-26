@@ -11,8 +11,8 @@ import com.mia2b.world.KeysPressed;
 
 public class FirstCharacter extends ParentCharacter {
 	private BufferedImage image = SpriteAssets.getCharacter().get(0);
-	private final int WIDTH = 32;
-	private final int HEIGHT = 32;
+	private final int WIDTH = 30;
+	private final int HEIGHT = 30;
 	private double x;
 	private double y;
 	private int speed = 64;
@@ -21,9 +21,9 @@ public class FirstCharacter extends ParentCharacter {
 	private boolean isRealPlayer = false;
 
 	public FirstCharacter() {
-		speed = (int) (64 + Math.random() * 1024);
-		rotateSpeed = (int) (64 + Math.random() * 2560);
-		// speed = 256;
+		//speed = (int) (64 + Math.random() * 1024);
+		//rotateSpeed = (int) (64 + Math.random() * 2560);
+		speed = 256;
 	}
 
 	public FirstCharacter(boolean isReal) {
