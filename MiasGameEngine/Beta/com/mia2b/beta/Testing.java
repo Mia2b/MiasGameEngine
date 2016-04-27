@@ -9,7 +9,7 @@ import com.mia2b.tiles.YellowTile;
 import com.mia2b.world.WorldObjects;
 
 public class Testing {
-	static int [][] mapArray = new Maze(9).getIntMaze();
+	static int [][] mapArray = new Maze(27).getIntMaze();
 
 			  					 	
 	public static BufferedImage im;

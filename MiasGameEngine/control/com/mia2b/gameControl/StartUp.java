@@ -25,7 +25,9 @@ public class StartUp {
 		Testing.addMap();
 		
 		//WorldObjects.addCharacter(new FirstCharacter(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
+		for(int i = 0;i<1;i++)
 		WorldObjects.addCharacter(new FirstCharacter(true),0,0);
+		
 		
 		//WorldObjects.addEnemy(new BlueMonster(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
 		
@@ -35,9 +37,9 @@ public class StartUp {
 		
 		
 		DisplayWindow.getCanvas().addKeyListener(new KeyInput()) ;
-		new CombineThread("Combine Thread", 1000);
-		//new TickThread("tick");
-		//new RenderThread("pretty");
+		//new CombineThread("Combine Thread", 1000);
+		new TickThread("tick");
+		new RenderThread("pretty");
 		
 
 		GetAndSetFpsTps();
