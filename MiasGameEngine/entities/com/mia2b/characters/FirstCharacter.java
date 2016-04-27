@@ -23,7 +23,7 @@ public class FirstCharacter extends ParentCharacter {
 	public FirstCharacter() {
 		//speed = (int) (64 + Math.random() * 1024);
 		//rotateSpeed = (int) (64 + Math.random() * 2560);
-		speed = 256;
+		speed = 1024;
 	}
 
 	public FirstCharacter(boolean isReal) {

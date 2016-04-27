@@ -30,7 +30,7 @@ public class StartUp {
 		//WorldObjects.addEnemy(new BlueMonster(),(int)(Math.random() * DisplayWindow.getFrame().getWidth()), (int)(Math.random() * DisplayWindow.getFrame().getHeight()));
 		
 		//for (int i = 0;i < 9000; i++){
-			WorldObjects.addTile(new YellowTile(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *3), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*3));
+		//	WorldObjects.addTile(new YellowTile(),(int)(Math.random() * DisplayWindow.getFrame().getWidth() *3), (int)(Math.random() * DisplayWindow.getFrame().getHeight()*3));
 		//}
 		
 		

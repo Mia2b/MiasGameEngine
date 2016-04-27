@@ -9,45 +9,14 @@ import com.mia2b.tiles.YellowTile;
 import com.mia2b.world.WorldObjects;
 
 public class Testing {
-	static int [][] mapArray = { {1,1,1,1,1,1,1,1,1,1,1,1,1},
-			  {1,0,1,0,1,0,1,0,0,0,0,0,1},
-			  {1,0,1,0,0,0,1,0,1,1,1,0,1},
-			  {1,0,0,0,1,1,1,0,0,0,0,0,1},
-			  {1,0,1,0,0,0,0,0,1,1,1,0,1},
-			  {1,0,1,0,1,1,1,0,1,0,0,0,1},
-			  {1,0,1,0,1,0,0,0,1,1,1,0,1},
-			  {1,0,1,0,1,1,1,0,1,0,1,0,1},
-			  {1,0,0,0,0,0,0,0,0,0,1,0,1},
-			  {1,1,1,1,1,1,1,1,1,1,1,1,1}
+	static int [][] mapArray = new Maze(9).getIntMaze();
 
-			};//new int [200][200];
-//											{	{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3,  1, 0, 2, 1, 1, -1,  0, 0},
-//			  					 				{ 0, 1, 0, 0,0,0, 0, 0, 1, 0, 3, 1, 0, 2, 1, -1, -1, 0,  0 },
-//			  					 				{ 0, 1, 0, 0, 0, 0, 0, 0, 1, 0 , 3, 1, 0, 2, 1, -1, -1, 0,0},
-//			  					 				{ 0, 3, 1, 0, 2, 1, -1, -1, 0, 0, 3, 1, 0, 2, 1, -1, -1,0,0},
-//			  					 				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0, 2, 1, -1, -1, 0, 0},
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3, 1, 0, 2, 1, -1, -1, 0, 0 },
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3, 1, 0, 2, 1, -1, -1, 0, 0 },
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3, 1, 0, 2, 1, -1, -1, 0, 0 },
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3, 1, 0, 2, 1, -1, -1, 0, 0 },
-//			  					 				{ 0, 0, 0, 0,-1,-1, -1,-1, -1, -1, 3, 1, 0, 2, 1,-1,-1,0,0 },
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3, 1, 0, 2, 1, -1, -1, 0, 0 },
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0 , 3, 1, 0, 2, 1, -1, -1, 0, 0},
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3, 1, 0, 2, 1, -1, -1, 0, 0 },
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0 , 3, 1, 0, 2, 1, -1, -1, 0, 0},
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3, 1, 0, 2, 1, -1, -1, 0, 0 },
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0 , 3, 1, 0, 2, 1, -1, -1, 0, 0},
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0 , 3, 1, 0, 2, 1, -1, -1, 0, 0},
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3, 1, 0, 2, 1, -1, -1, 0, 0 },
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0 , 3, 1, 0, 2, 1, -1, -1, 0, 0},
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3, 1, 0, 2, 1, -1, -1, 0, 0 },
-//			  					 				{ 0, 0, 0, 0,-1,0, 0, 0, 0, 0, 3, 1, 0, 2, 1, -1, -1, 0, 0 }};
-	
 			  					 	
-	public static BufferedImage im = new BufferedImage(mapArray[0].length*SpriteAssets.getSpritewidth(),mapArray.length* SpriteAssets.getSpriteheight() , BufferedImage.TYPE_INT_ARGB);
+	public static BufferedImage im;
 	
 	public static void makeMap() {
-		
+		im = new BufferedImage(mapArray[0].length*SpriteAssets.getSpritewidth(),mapArray.length* SpriteAssets.getSpriteheight() , BufferedImage.TYPE_INT_ARGB);
+
 		for (int i = 0; i < mapArray.length;i++){
 			for (int j = 0; j < mapArray[0].length;j++){
 				mapArray[i][j] = (int) ((Math.random()*6)-2);
@@ -55,10 +24,12 @@ public class Testing {
 		}
 	}
 	public static void addMap(){
+		int midY = ((mapArray.length/2)*32);
+		int midX = ((mapArray[0].length/2)*32);
 		for (int i = 0; i < mapArray.length; i++) {
-			for (int j = 0; j < mapArray[1].length; j++) {
+			for (int j = 0; j < mapArray[0].length; j++) {
 				if(mapArray[i][j] == 1){
-					WorldObjects.addTile(new YellowTile(),i*32, j*32);
+					WorldObjects.addTile(new YellowTile(),i*32-midX, j*32-midY);
 				}
 			}
 		}
