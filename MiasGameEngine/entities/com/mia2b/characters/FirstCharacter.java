@@ -16,8 +16,8 @@ public class FirstCharacter extends ParentCharacter {
 	private double x;
 	private double y;
 	private double speed = 0;
-	private double maxSpeed = 640;
-	private double accel = 1024;
+	private double maxSpeed = 1024;
+	private double accel = 1048;
 	private int rotateSpeed = 64;
 	private double currentDirection = 45;
 	private boolean isRealPlayer = false;
@@ -93,7 +93,7 @@ public class FirstCharacter extends ParentCharacter {
 			} else if(speed < 0){
 				speed = 0;
 			}
-			
+			System.out.println(speed);
 			move(lastActionDelta,(int) speed, currentDirection);
 			Camera.setCameraX(x);
 			Camera.setCameraY(y);
@@ -126,7 +126,7 @@ public class FirstCharacter extends ParentCharacter {
 					Rectangle hitBox = collisionBox(i);
 					boolean none = true;
 					while (hitBox.intersects(nextX, nextY, WIDTH, HEIGHT)) {
-	
+						
 						none = true;
 						if (hitBox.intersects(nextX, y, WIDTH, HEIGHT)) {
 							nextX -= (Math.cos(Math.toRadians(direction)));
@@ -140,7 +140,7 @@ public class FirstCharacter extends ParentCharacter {
 							nextY = y;
 							nextX = x;
 						}
-						speed = 0;
+						
 					}
 			}
 		}

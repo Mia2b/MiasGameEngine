@@ -37,7 +37,7 @@ public class StartUp {
 		
 		
 		DisplayWindow.getCanvas().addKeyListener(new KeyInput()) ;
-		new CombineThread("Combine Thread", 1000);
+		new CombineThread("Combine Thread", 999);
 		//new TickThread("tick");
 		//new RenderThread("pretty");
 		
