@@ -43,13 +43,16 @@ public class WorldRender {
 	private void drawEntities() {
 		Camera.setVisibleEntities();
 		for (ParentCharacter i : new ArrayList<ParentCharacter>(Camera.getVisibleCharacters())) {
+			//if(i != null)
 			g.drawImage(i.getImage(), (int)i.getX()-Camera.getCameraX() + Camera.getBufferWidth()-16, (int)i.getY()-Camera.getCameraY() + Camera.getBufferHeight()-16, null);
 		}
 		for (ParentEnemy i :  new ArrayList<ParentEnemy>(Camera.getVisibleEnemies())) {
+			//if(i != null)
 			g.drawImage(i.getImage(), (int)i.getX()-Camera.getCameraX() + Camera.getBufferWidth()-16, (int)i.getY()-Camera.getCameraY() + Camera.getBufferHeight()-16, null);
 		}
 		for (ParentTile i :  new ArrayList<ParentTile>(Camera.getVisibleTiles())) {
+			//if(i != null)
 			g.drawImage(i.getImage(), (int)i.getX()-Camera.getCameraX() + Camera.getBufferWidth()-16, (int)i.getY()-Camera.getCameraY() + Camera.getBufferHeight()-16, null);
-		}
+			}
 	}
 }

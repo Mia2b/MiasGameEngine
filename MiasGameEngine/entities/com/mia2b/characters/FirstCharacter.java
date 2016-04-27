@@ -15,7 +15,9 @@ public class FirstCharacter extends ParentCharacter {
 	private final int HEIGHT = 30;
 	private double x;
 	private double y;
-	private int speed = 64;
+	private double speed = 0;
+	private double maxSpeed = 640;
+	private double accel = 1024;
 	private int rotateSpeed = 64;
 	private double currentDirection = 45;
 	private boolean isRealPlayer = false;
@@ -23,7 +25,7 @@ public class FirstCharacter extends ParentCharacter {
 	public FirstCharacter() {
 		//speed = (int) (64 + Math.random() * 1024);
 		//rotateSpeed = (int) (64 + Math.random() * 2560);
-		speed = 1024;
+		//speed = 1024;
 	}
 
 	public FirstCharacter(boolean isReal) {
@@ -67,35 +69,37 @@ public class FirstCharacter extends ParentCharacter {
 	private void moveWithInput(double lastActionDelta, boolean isMainPlayer) {
 		if (isMainPlayer) {
 			if (KeysPressed.contains('W') && KeysPressed.contains('A')) {
-				currentDirection = 225;
-				move(lastActionDelta, speed, currentDirection);
+				currentDirection = 225;speed += accel * 1 * lastActionDelta;
 			} else if (KeysPressed.contains('A') && KeysPressed.contains('S')) {
-				currentDirection = 135;
-				move(lastActionDelta, speed, currentDirection);
+				currentDirection = 135;speed += accel * 1 * lastActionDelta;
 			} else if (KeysPressed.contains('S') && KeysPressed.contains('D')) {
-				currentDirection = 45;
-				move(lastActionDelta, speed, currentDirection);
+				currentDirection = 45;speed += accel * 1 * lastActionDelta;
 			} else if (KeysPressed.contains('D') && KeysPressed.contains('W')) {
-				currentDirection = 315;
-				move(lastActionDelta, speed, currentDirection);
+				currentDirection = 315;speed += accel * 1 * lastActionDelta;
 			} else if (KeysPressed.contains('W')) {
-				currentDirection = 270;
-				move(lastActionDelta, speed, currentDirection);
+				currentDirection = 270;speed += accel * 1 * lastActionDelta;
 			} else if (KeysPressed.contains('A')) {
-				currentDirection = 180;
-				move(lastActionDelta, speed, currentDirection);
+				currentDirection = 180;speed += accel * 1 * lastActionDelta;
 			} else if (KeysPressed.contains('S')) {
-				currentDirection = 90;
-				move(lastActionDelta, speed, currentDirection);
+				currentDirection = 90;speed += accel * 1 * lastActionDelta;
 			} else if (KeysPressed.contains('D')) {
-				currentDirection = 0;
-				move(lastActionDelta, speed, currentDirection);
+				currentDirection = 0; speed += accel * 1.5 * lastActionDelta;
+			}else {
+				speed -= accel * 2 * lastActionDelta;
 			}
+			
+			if(speed > maxSpeed){
+				speed=maxSpeed;
+			} else if(speed < 0){
+				speed = 0;
+			}
+			
+			move(lastActionDelta,(int) speed, currentDirection);
 			Camera.setCameraX(x);
 			Camera.setCameraY(y);
 		} else {
 			currentDirection = currentDirection + (rotateSpeed * lastActionDelta);
-			move(lastActionDelta, speed, currentDirection);
+			move(lastActionDelta, (int)speed, currentDirection);
 		}
 	}
 
@@ -118,25 +122,26 @@ public class FirstCharacter extends ParentCharacter {
 		double nextY = nextYPosition(lastActionDelta, speed, direction);
 		if (!tiles.isEmpty()) {
 			quickSort(tiles);
-			for (ParentTile i : tiles) {
-				Rectangle hitBox = collisionBox(i);
-				boolean none = true;
-				while (hitBox.intersects(nextX, nextY, WIDTH, HEIGHT)) {
-
-					none = true;
-					if (hitBox.intersects(nextX, y, WIDTH, HEIGHT)) {
-						nextX -= (Math.cos(Math.toRadians(direction)));
-						none = false;
+			for (ParentTile i : (tiles)) {
+					Rectangle hitBox = collisionBox(i);
+					boolean none = true;
+					while (hitBox.intersects(nextX, nextY, WIDTH, HEIGHT)) {
+	
+						none = true;
+						if (hitBox.intersects(nextX, y, WIDTH, HEIGHT)) {
+							nextX -= (Math.cos(Math.toRadians(direction)));
+							none = false;
+						}
+						if (hitBox.intersects(x, nextY, WIDTH, HEIGHT)) {
+							nextY = nextY - (Math.sin(Math.toRadians(direction)));
+							none = false;
+						}
+						if (none) {
+							nextY = y;
+							nextX = x;
+						}
+						speed = 0;
 					}
-					if (hitBox.intersects(x, nextY, WIDTH, HEIGHT)) {
-						nextY = nextY - (Math.sin(Math.toRadians(direction)));
-						none = false;
-					}
-					if (none) {
-						nextY = y;
-						nextX = x;
-					}
-				}
 			}
 		}
 		this.x = nextX;

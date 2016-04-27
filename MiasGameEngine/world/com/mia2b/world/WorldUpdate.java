@@ -26,6 +26,5 @@ public class WorldUpdate {
 		for (ParentTile i :  new ArrayList<ParentTile>(WorldObjects.getTiles())) {
 			i.action();
 		}
-		
 	}
 }
