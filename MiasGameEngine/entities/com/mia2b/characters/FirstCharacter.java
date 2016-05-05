@@ -16,7 +16,7 @@ public class FirstCharacter extends ParentCharacter {
 	private double x;
 	private double y;
 	private double speed = 0;
-	private double maxSpeed = 1024;
+	private double maxSpeed = 1048;
 	private double accel = 1048;
 	private int rotateSpeed = 64;
 	private double currentDirection = 45;
@@ -85,7 +85,7 @@ public class FirstCharacter extends ParentCharacter {
 			} else if (KeysPressed.contains('D')) {
 				currentDirection = 0; speed += accel * 1.5 * lastActionDelta;
 			}else {
-				speed -= accel * 2 * lastActionDelta;
+				speed -= accel *8 * lastActionDelta;
 			}
 			
 			if(speed > maxSpeed){

@@ -9,7 +9,7 @@ import com.mia2b.tiles.YellowTile;
 import com.mia2b.world.WorldObjects;
 
 public class Testing {
-	static int [][] mapArray = new Maze(21).getIntMaze();
+	static int [][] mapArray = new Maze(33).getIntMaze();
 
 			  					 	
 	public static BufferedImage im;
@@ -24,8 +24,12 @@ public class Testing {
 		}
 	}
 	public static void addMap(){
-		int midY = 32;//((mapArray.length/2)*32);
-		int midX = 0;//((mapArray[0].length/2)*32);
+		int midY =
+				//32;
+		((mapArray.length/2)*32);
+		int midX = 
+				//0;
+		((mapArray[0].length/2)*32);
 		for (int i = 0; i < mapArray.length; i++) {
 			for (int j = 0; j < mapArray[0].length; j++) {
 				if(mapArray[i][j] == 1){
